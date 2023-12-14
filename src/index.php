@@ -4,7 +4,11 @@ include './app/model/connectdb.php';
 include './app/model/product.php';
 include './app/model/cate.php';
 include './app/model/khachhang.php';
-
+include './app/model/cart.php';
+include './app/model/binhluan.php';
+include './app/model/color.php';
+include './app/model/size.php';
+include './app/model/donhang.php';
 
 ?>
 <!DOCTYPE html>
@@ -18,6 +22,8 @@ include './app/model/khachhang.php';
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="./resources/css/global.css">
+    <link rel="stylesheet" href="../../resources/css/global.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -35,22 +41,101 @@ include './app/model/khachhang.php';
                         case 'productinformation';
                             include './resources/view/products/ProductInformation.php';
                             break;
+                        case 'productstrending';
+                            include './resources/view/products/ProductsTrending.php';
+                            break;
                         case 'login';
                             include './resources/view/account/login.php';
                             break;
                         case 'register';
                             include './resources/view/account/register.php';
                             break;
-
-                        case 'login';
-                            include './resources/view/account/login.php';
-                            break;
-
-                     
                         case 'logout';
                             include './resources/view/account/logout.php';
                             header("Location:index.php");
                             break;
+                        case 'forgetPasswordUser';
+                            include './resources/view/account/forget_pass.php';
+                            break;
+                        case 'myAccount':
+                            include './resources/view/account/myAccount.php';
+                            break;
+                        case 'updateAccount':
+                            include './resources/view/account/update.php';
+                            break;
+
+                        case 'forgetPassword':
+                            include './resources/view/account/forgetPass.php';
+                            break;
+                        case 'mycart':
+                            include './resources/view/cart/viewcart.php';
+
+                            break;
+                        case 'addcart':
+                            if (isset($_POST['addtocart'])) {
+
+                                include './resources/view/cart/addcart.php';
+                            }
+                            if (isset($_POST['buy'])) {
+                                $size = $_POST['size'];
+                                $color = $_POST['color'];
+                                $soluong = $_POST['cart_qty'];
+                                include './resources/view/cart/checkoutone.php';
+                            }
+
+                            break;
+                        case 'v':
+                            include './resources/view/cart/checkoutonevalidate.php';
+                            break;
+                        case 'del_procart':
+
+                            include './resources/view/cart/delcart.php';
+
+                            break;
+                        case 'updatecart';
+                            include './resources/view/cart/viewupdatecart.php';
+                            break;
+                        case 'update_cart':
+                            include './resources/view/cart/UpdateCart.php';
+                            break;
+
+                        case 'checkout':
+                            include './resources/view/cart/Checkout.php';
+                            break;
+                        case 'order':
+                            include './resources/view/cart/order.php';
+
+                            break;
+                        case 'orderone':
+                            include './resources/view/cart/orderone.php';
+
+                            break;
+                        case 'myAccount':
+                            include './resources/view/account/myAccount.php';
+                            break;
+                        case 'cancel_order':
+                            include './resources/view/cart/cancel.php';
+                            break;
+                        case 'myAccountchitiet':
+                            include './resources/view/account/myacountchitiet.php';
+                            break;
+                        case 'addlike':
+
+                            if (isset($_POST['like'])) {
+                                $proid = $_POST['pro_id'];
+                                $khid = $_POST['kh_id'];
+                                addProductToFavourite($khid, $proid);
+                                header("Location:index.php?act=productinformation&pro_id=" . $proid);
+                            }
+                            break;
+                            case 'notlike':
+                                if(isset($_GET['like_id']) && $_GET['kh_id']){
+                                    $like_id = $_GET['like_id'];
+
+                                    $sql = "delete from products_favourite where pro_favourite_id  = $like_id";
+                                    pdo_execute($sql);
+                                    header("location:index.php?act=myAccount");
+                                }
                     }
                 } else {
                     include('./resources/view/Home.php');
@@ -65,6 +150,16 @@ include './app/model/khachhang.php';
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous">
     </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="./resources/js/ValidateFormUpdate.js"></script>
+    <script src="./resources/js/ValidateFormForget.js"></script>
+
+    <script src="./resources/js/notifi.js"></script>
+
+
 </body>
 
 </html>

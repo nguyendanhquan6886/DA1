@@ -1,4 +1,4 @@
-<!-- <?php
+ <?php
     if (isset($_POST['register'])) {
         $username = $_POST['username'];
         $email = $_POST['email'];
@@ -87,13 +87,18 @@
             addkh($password,$username,$email,$phone,$address);
             
                 
-                if(addkh($password,$username,$email,$phone,$address)){
-                    ?>
+                
+                    
+                    
                         
 
-                    <?php
+                $sql = " select * from khachhang where kh_id = (select max(kh_id) from khachhang)";
+                $khachhang = pdo_query_one($sql);
+                addcart_kh($khachhang['kh_id'],0);
+                header("Location:index.php?act=login");
+
                     
-                }
+                
                 
                 
         }
@@ -140,7 +145,7 @@
     <p class="mt-4">You have a account? <a href="index.php?act=login" class="text-dark">Login</a></p>
 </div>
 
-<!-- <script>
+ <!-- <script>
     const form = document.querySelector(".form")
 
     form.addEventListener("submit", (e) => {
@@ -159,4 +164,4 @@
             console.log(res);
         })
     })
-</script> -->
+</script>  -->

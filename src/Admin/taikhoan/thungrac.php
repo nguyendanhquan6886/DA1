@@ -1,9 +1,8 @@
 
             
     <!-- main -->
-            <div class="col-sm-9">
-                <div class="container">
-                    <h2 class="border border-4 mb-4 text-black-50 p-3 text-center rounded">Danh sách tài khoản khách hàng</h2>
+    <div class="container">
+                    <h2 class="border border-4 mb-4 text-bg-secondary p-3 text-center rounded">Danh sách tài khoản khách hàng đã bị xoá</h2>
                     <!-- <form action="" class="mb-4">
                             <div class="row">
                             <div class="col-sm-4">
@@ -24,15 +23,14 @@
                           <table class="table table-bordered">
                               <thead>
                                 <tr>
-                                  <Th></Th>
-                                  <th>Id</th>
-                                  <th>Tên đăng nhập</th>
-                                  <th>Mật khẩu</th>
-                                  <Th>Email</Th>
-                                  <Th>Địa chỉ</Th>
-                                  <Th>Số điện thoại</Th>
-                                  <Th>Vai trò</Th>
-                                  <Th></Th>
+                                  <th class="text-bg-secondary">Id</th>
+                                  <th class="text-bg-secondary">Tên đăng nhập</th>
+                                  <th class="text-bg-secondary">Mật khẩu</th>
+                                  <Th class="text-bg-secondary">Email</Th>
+                                  <Th class="text-bg-secondary">Địa chỉ</Th>
+                                  <Th class="text-bg-secondary">Số điện thoại</Th>
+                                  <Th class="text-bg-secondary">Vai trò</Th>
+                                  <Th class="text-bg-secondary">Thao tác</Th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -40,7 +38,6 @@
                               extract($tk);
                               ?>
                                 <tr>
-                                  <td><input type="checkbox" name="checkbox" id=""></td>
                                   <td><?= $kh_id  ?></td>
                                   <td><?= $kh_name ?></td>
                                   <td><?= $kh_pass ?></td>
@@ -49,8 +46,8 @@
                                   <td><?= $kh_tel ?></td>
                                   <td><?= $vaitro_id ?></td>
                                   <td>
-                                      <a href="index.php?act=suatk&kh_id=<?php echo $kh_id ?>" class="mb-2"><input class="mb-2" type="button" name="" value="Sửa" id=""></a>
-                                      <a href="index.php?act=xoatk&kh_id=<?php echo $kh_id ?>"><input type="button" name="" value="Xoá" id=""></a>
+                                      <a href="indexadmin.php?act=xoatk&kh_id=<?php echo $kh_id ?>"><input type="button" class="mb-2 text-bg-secondary rounded" onclick="return confirm('Bạn có chắc muốn xoá ?')" name="" value="Xoá cứng" id=""></a>
+                                      <a href="indexadmin.php?act=khoiphuc_kh&kh_id=<?php echo $kh_id ?>"><input type="button" class="mb-2 text-bg-success rounded" onclick="return confirm('Bạn có chắc muốn khôi phục ?')" name="" value="Khôi phục" id=""></a>
                                   </td>
                                 </tr>
                               <?php  } ?>
@@ -58,15 +55,7 @@
                             </table>
                         </div>
                         <div class="">
-                          <button type="button" class="btn btn-primary btn-sm ">Chọn tất cả</button>
-                          <button type="button" class="btn btn-primary btn-sm">Bỏ chọn tất cả</button>
-                          <button type="button" class="btn btn-primary btn-sm">Xoá các mục đã chọn</button>
-                          <a href="index?act=addtk">
-                            <button type="button" class="btn btn-primary btn-sm">Nhập thêm</button>
-                          </a>
                         </div>
                 </div>
-            </div>
-        </div>    
-    </div>
+
     

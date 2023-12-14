@@ -42,5 +42,8 @@ if (isset($_POST['login'])) {
         <p class="text-danger form-message mt-1"><?php echo !empty($loginMess) ? $loginMess : ""  ?></p>
         <button type="submit" class="btn btn-dark w-100 text-uppercase" name="login">Login</button>
     </form>
-    <p class="mt-4">You don't have account? <a href="index.php?act=register">Sign up</a></p>
+    <p class="mt-3 mb-0">You have not registered an account yet? <a href="index.php?act=register">Sign up</a>
+    </p>
+    <span>or</span>
+    <p>You have forgotten your password? <a href="index.php?act=forgetPasswordUser">Forget Password</a></p>
 </div>

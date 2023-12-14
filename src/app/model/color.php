@@ -6,7 +6,10 @@
     }
     function query_onecolor($id){
         $sql = "select * from color where color_id = $id";
+        // printf($sql);
+        // die;
         $result = pdo_query_one($sql);
         return $result;
     }
+    
 ?>
